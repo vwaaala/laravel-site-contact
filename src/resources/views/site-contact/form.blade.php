@@ -16,7 +16,7 @@
                 @csrf
                 <!-- CSRF token for form submission -->
                 <div class="mb-3">
-                    <label for="visitor_name" class="form-label">Name</label>
+                    <label for="visitor_name" class="form-label">{{ trans('site-contact::site_contact.visitor_name') }}</label>
                     <!-- Input field for visitor's name -->
                     <input type="text"
                            class="form-control @if(isset($errors) && $errors->has('visitor_name')) is-invalid @endif"
@@ -29,7 +29,7 @@
                     @endif
                 </div>
                 <div class="mb-3">
-                    <label for="visitor_email" class="form-label">Email</label>
+                    <label for="visitor_email" class="form-label">{{ trans('site-contact::site_contact.visitor_email') }}</label>
                     <!-- Input field for visitor's email -->
                     <input type="email"
                            class="form-control @if(isset($errors) && $errors->has('visitor_email')) is-invalid @endif"
@@ -42,7 +42,7 @@
                     @endif
                 </div>
                 <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
+                    <label for="message" class="form-label">{{ trans('site-contact::site_contact.visitor_message') }}</label>
                     <!-- Textarea field for visitor's message -->
                     <textarea class="form-control @if(isset($errors) && $errors->has('message')) is-invalid @endif"
                               id="message"
@@ -55,7 +55,7 @@
                     @endif
                 </div>
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">{{ trans('site-contact::site_contact.form_submit') }}</button>
             </form>
         </div>
     </div>
