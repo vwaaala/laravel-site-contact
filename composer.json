@@ -1,0 +1,19 @@
+{
+    "name": "bunker/site-contact",
+    "description": "It can collect and manage contact general purpose request query from site",
+    "type": "library",
+    "license": "GPL-3.0",
+    "autoload": {
+        "psr-4": {
+            "Bunker\\SiteContact\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rafiqul Islam Shawn",
+            "email": "vwaaala@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
