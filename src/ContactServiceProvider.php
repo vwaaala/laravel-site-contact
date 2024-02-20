@@ -12,7 +12,10 @@ class ContactServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/views', 'site-contact');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->mergeConfigFrom(__DIR__ . '/config/site-contact.php', 'site-contact');
-        $this->publishes([__DIR__ . '/config/site-contact.php' => config_path('site-contact.php')]);
+        $this->publishes([
+            __DIR__ . '/config/site-contact.php' => config_path('site-contact.php'),
+            __DIR__ . '/view' => resource_path('views/vendor/site-contact')
+        ]);
     }
 
     public function register()
