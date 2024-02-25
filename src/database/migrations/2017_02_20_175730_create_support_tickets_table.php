@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('site_contacts', function (Blueprint $table) {
+        Schema::create('support_tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('visitor_name');
-            $table->string('visitor_email');
+            $table->string('name');
+            $table->string('email');
             $table->text('message');
             $table->boolean('status')->default(true);
             $table->timestamps();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('site_contacts');
+        Schema::dropIfExists('support_tickets');
     }
 };

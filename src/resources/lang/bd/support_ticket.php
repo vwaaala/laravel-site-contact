@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'form_title' => 'যোগাযোগ করুন',
     'visitor_name' => 'আপনার পুরো নাম',
     'visitor_email' => 'আপনার ইমেইল',
     'visitor_message' => 'কি সুংক্রান্ত তথ্য জানতে চান',

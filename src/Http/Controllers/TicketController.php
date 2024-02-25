@@ -3,19 +3,19 @@
 namespace Bunker\SiteContact\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Bunker\SiteContact\Mail\SiteContactMailable;
-use Bunker\SiteContact\Models\SiteContact;
+use Bunker\SiteContact\Mail\TicketMailable;
+use Bunker\SiteContact\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class SiteContactController extends Controller
+class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Retrieve and display site contacts
+        dd(app()->getLocale());
     }
 
     /**
@@ -29,8 +29,8 @@ class SiteContactController extends Controller
             'message' => 'required'
         ]);
 
-        Mail::to(config('config.site_contact_email_to', 'example@example.com'))->send( new SiteContactMailable($request->visitor_name, $request->message));
-        SiteContact::create($request->only(['visitor_name', 'visitor_email', 'message']));
+        Mail::to(config('config.site_contact.site_contact_email_to', 'example@example.com'))->send( new TicketMailable($request->visitor_name, $request->message));
+        Ticket::create($request->only(['name', 'email', 'message']));
 
         return redirect()->back()->with('success', 'We have received your message. Please wait for further response.');
     }
@@ -40,13 +40,13 @@ class SiteContactController extends Controller
      */
     public function create(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        return view('site-contact::form');
+        return view('support-ticket::form');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(SiteContact $siteContact)
+    public function show(Ticket $siteContact)
     {
         // Show individual site contact
     }
@@ -54,7 +54,7 @@ class SiteContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SiteContact $siteContact)
+    public function edit(Ticket $siteContact)
     {
         // Show form to edit site contact
     }
@@ -62,7 +62,7 @@ class SiteContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SiteContact $siteContact)
+    public function update(Request $request, Ticket $siteContact)
     {
         // Update site contact
     }
@@ -70,7 +70,7 @@ class SiteContactController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SiteContact $siteContact)
+    public function destroy(Ticket $siteContact)
     {
         // Delete site contact
     }

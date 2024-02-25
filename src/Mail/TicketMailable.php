@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SiteContactMailable extends Mailable
+class TicketMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +30,7 @@ class SiteContactMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Site Contact Mailable',
+            subject: 'Ticket Mailable',
         );
     }
 
@@ -40,7 +40,7 @@ class SiteContactMailable extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'site-contact::site-contact.email',
+            markdown: 'support-ticket::support-ticket.email',
             with: ['name' => $this->name, 'message' => $this->message],
         );
     }

@@ -1,11 +1,11 @@
 {
-    "name": "bunker/site-contact",
-    "description": "It can collect and manage contact general purpose request query from site",
+    "name": "bunker/support-ticket",
+    "description": "It can create ticket from both auth and guest.",
     "type": "library",
     "license": "GPL-3.0",
     "autoload": {
         "psr-4": {
-            "Bunker\\SiteContact\\": "src/"
+            "Bunker\\SupportTicket\\": "src/"
         }
     },
     "authors": [
@@ -15,11 +15,10 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
     "extra": {
         "laravel": {
             "providers": [
-                "Bunker\\SiteContact\\ContactServiceProvider"
+                "Bunker\\SupportTicket\\TicketServiceProvider"
             ]
         }
     }
