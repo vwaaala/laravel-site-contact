@@ -1,6 +1,6 @@
 <?php
 
-namespace Bunker\SiteContact;
+namespace Bunker\SupportTicket;
 
 use Illuminate\Support\ServiceProvider;
 
