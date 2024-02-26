@@ -1,6 +1,6 @@
 <?php
 
-namespace Bunker\SiteContact\Models;
+namespace Bunker\SupportTicket\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
