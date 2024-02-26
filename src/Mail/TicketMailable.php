@@ -1,9 +1,10 @@
 <?php
 
-namespace Bunker\SiteContact\Mail;
+namespace Bunker\SupportTicket\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -12,12 +13,13 @@ class TicketMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name;
-    public $message;
+    public string $name;
+    public string $message;
+
     /**
      * Create a new message instance.
      */
-    public function __construct($name, $message)
+    public function __construct(string $name, string $message)
     {
         //
         $this->name = $name;
@@ -29,9 +31,7 @@ class TicketMailable extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope(
-            subject: 'Ticket Mailable',
-        );
+        return new Envelope(subject: 'Ticket Mailable',);
     }
 
     /**
@@ -39,16 +39,13 @@ class TicketMailable extends Mailable
      */
     public function content(): Content
     {
-        return new Content(
-            markdown: 'support-ticket::support-ticket.email',
-            with: ['name' => $this->name, 'message' => $this->message],
-        );
+        return new Content(markdown: 'support-ticket::email', with: ['name' => $this->name, 'message' => $this->message],);
     }
 
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return array<int, Attachment>
      */
     public function attachments(): array
     {

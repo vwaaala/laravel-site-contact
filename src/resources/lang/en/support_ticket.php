@@ -1,9 +1,3 @@
 <?php
 
-return [
-    'visitor_name' => 'Full name',
-    'visitor_email' => 'Your email',
-    'visitor_message' => 'Tell us how can we help you',
-    'visitor_status' => 'Status',
-    'form_submit' => 'Send now',
-];
+return ['form_header' => 'Send us message', 'form_submit' => 'Send now','close' => 'Close Ticket','reopen' => 'Reopen Ticket', 'reply_placeholder' => 'Reply to this ticket', 'title' => 'Support Tickets', 'title_singular' => 'Support Ticket', 'not_found' => 'No Ticket Found!', 'fields' => ['id' => 'ID', 'id_helper' => '', 'title' => 'Full name', 'title_helper' => '', 'email' => 'Your email', 'email_helper' => '', 'message' => 'Tell us how can we help you', 'message_helper' => '', 'status' => 'Status','created_at' => 'Created at', 'created_at_helper' => '', 'updated_at' => 'Updated at', 'updated_at_helper' => '', 'deleted_at' => 'Deleted at', 'deleted_at_helper' => '']];
