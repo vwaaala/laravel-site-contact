@@ -20,7 +20,6 @@ class TicketController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('permission:support_ticket_show|support_ticket_create|support_ticket_edit|support_ticket_delete', ['only' => ['index','show']]);
-        $this->middleware('permission:support_ticket_create', ['only' => ['create','store']]);
         $this->middleware('permission:support_ticket_edit', ['only' => ['edit','update']]);
         $this->middleware('permission:support_ticket_delete', ['only' => ['destroy']]);
     }
@@ -35,6 +34,14 @@ class TicketController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create(): \Illuminate\Contracts\Foundation\Application|Factory|View|Application
+    {
+        return view('support-ticket::form');
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse
@@ -45,14 +52,6 @@ class TicketController extends Controller
         Ticket::create($request->all());
 
         return redirect()->back()->with('success', 'We have received your message. Please wait for further response.');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): \Illuminate\Contracts\Foundation\Application|Factory|View|Application
-    {
-        return view('support-ticket::form');
     }
 
     /**
