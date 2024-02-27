@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2>{{ __('support-ticket::support_ticket.form_header') }}</h2>
-            <form id="visitorForm" method="POST" action="{{ route('support_ticket.send') }}">
+            <form id="visitorForm" method="POST" action="{{ route('support_ticket.store') }}">
                 @csrf
                 <!-- CSRF token for form submission -->
                 <div class="mb-3">
