@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Bunker\SupportTicket\Http\Controllers', 'middleware' => 'web', 'as' => 'support_ticket.'], function () {
     Route::get('contact-message', 'TicketController@create')->name('form');
-    Route::post('contact-message-store', 'TicketController@store')->name('store');
+    Route::post('contact-message-store', 'TicketController@send')->name('send');
 });
 
 Route::group(['namespace' => 'Bunker\SupportTicket\Http\Controllers', 'middleware' => ['auth', 'web'], 'as' => 'support_ticket.'], function () {
