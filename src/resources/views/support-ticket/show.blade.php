@@ -23,16 +23,31 @@
             @endcan
         </div>
         <div class="card-body">
-            <div class="mb-3">
-                <p>{{ $supportTicket->name }}</p>
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <label for="ticket_name" class="text-muted">{{ __('support_ticket.fields.title') }}:</label>
+                </div>
+                <div class="col-sm-9">
+                    <p id="ticket_name" class="mb-0">{{ $supportTicket->name }}</p>
+                </div>
             </div>
 
-            <div class="mb-3">
-                <p>{{ $supportTicket->email }}</p>
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <label for="ticket_email" class="text-muted">{{ __('support_ticket.fields.email') }}:</label>
+                </div>
+                <div class="col-sm-9">
+                    <p id="ticket_email" class="mb-0">{{ $supportTicket->email }}</p>
+                </div>
             </div>
 
-            <div class="mb-3">
-                <p>{{ $supportTicket->message }}</p>
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <label for="ticket_message" class="text-muted">{{ __('support_ticket.fields.message') }}:</label>
+                </div>
+                <div class="col-sm-9">
+                    <p id="ticket_message" class="mb-0">{{ $supportTicket->message }}</p>
+                </div>
             </div>
 
             @can('support_ticket_edit')

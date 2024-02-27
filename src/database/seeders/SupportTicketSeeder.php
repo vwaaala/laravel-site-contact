@@ -1,6 +1,7 @@
 <?php
 
-namespace Bunker\SupportTicket\database\seeders;
+namespace Database\Seeders;
+;
 
 use Bunker\SupportTicket\Models\Ticket;
 use Illuminate\Database\Seeder;

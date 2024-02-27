@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    @can('role_show')
+    @can('support_ticket_show')
         <!-- User DataTable -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
@@ -9,10 +9,9 @@
             </div>
 
             <div class="card-body">
-                @can('role_create')
-                    <a href="{{ route('support_ticket.create') }}" class="btn btn-secondary btn-sm my-2"><i
-                            class="bi bi-plus-circle"></i> {{ __('global.add') }} {{ __('support_ticket.title_singular') }}</a>
-                @endcan
+                <a href="{{ route('support_ticket.create') }}" class="btn btn-secondary btn-sm my-2">
+                    <i class="bi bi-plus-circle"></i> {{ __('global.add') }} {{ __('support_ticket.title_singular') }}
+                </a>
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
@@ -33,20 +32,20 @@
                                        title="{{ __('global.show') }}">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    @can('role_edit')
-                                        <a href="{{ route('support_ticket.edit',$ticket->uuid) }}"
-                                           class="btn btn-warning btn-sm"
-                                           title="{{ __('global.edit') }}">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                    @endcan
-                                    @can('role_delete')
-                                        <a href="{{ route('support_ticket.destroy',$ticket->uuid) }}"
-                                           class="btn btn-danger btn-sm"
-                                           title="{{ __('global.delete') }}">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    @endcan
+                                    {{--                                    @can('support_ticket_edit')--}}
+                                    {{--                                        <a href="{{ route('support_ticket.edit',$ticket->uuid) }}"--}}
+                                    {{--                                           class="btn btn-warning btn-sm"--}}
+                                    {{--                                           title="{{ __('global.edit') }}">--}}
+                                    {{--                                            <i class="bi bi-pencil"></i>--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                    @endcan--}}
+                                    {{--                                    @can('support_ticket_delete')--}}
+                                    {{--                                        <a href="{{ route('support_ticket.destroy',$ticket->uuid) }}"--}}
+                                    {{--                                           class="btn btn-danger btn-sm"--}}
+                                    {{--                                           title="{{ __('global.delete') }}">--}}
+                                    {{--                                            <i class="bi bi-trash"></i>--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                    @endcan--}}
                                 </div>
                             </td>
                         </tr>
