@@ -3,7 +3,6 @@
 namespace Bunker\SupportTicket;
 
 use Illuminate\Support\ServiceProvider;
-use Bunker\SupportTicket\database\seeders\SupportTicketSeeder;
 
 class TicketServiceProvider extends ServiceProvider
 {
