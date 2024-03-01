@@ -20,7 +20,7 @@ Route::group(['namespace' => 'Bunker\SupportTicket\Http\Controllers', 'middlewar
     Route::get('contact-messages/{uuid}/edit', 'TicketController@edit')->name('edit');
 
     // Update route
-    Route::put('contact-message/{uuid}', 'TicketController@update')->name('update');
+    Route::put('contact-messages/{uuid}', 'TicketController@update')->name('update');
 
     Route::get('contact-messages/{uuid}/destroy', 'TicketController@destroy')->name('destroy');
 

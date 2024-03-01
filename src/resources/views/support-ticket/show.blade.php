@@ -1,5 +1,16 @@
 @extends('layouts.app')
-
+@push('styles')
+<style>
+    #ticketReplyForm .form-control {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+    ul.support-threads {
+        border-radius: 20px;
+        border: 1px solid #0d6efd2e;
+    }
+</style>
+@endpush
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between">
@@ -10,45 +21,51 @@
 
                     <form method="POST" action="{{ route('support_ticket.closeReply', $supportTicket->uuid) }}">
                         @csrf
-                        <button class="btn btn-sm btn-secondary" type="submit">
+                        <button class="btn btn-sm btn-danger" type="submit">
                             <i class="bi bi-check2-circle"></i> {{ __('support_ticket.close') }}</button>
                     </form>
                 @else
                     <form method="POST" action="{{ route('support_ticket.reOpenReply', $supportTicket->uuid) }}">
                         @csrf
-                        <button class="btn btn-sm btn-secondary" type="submit">
+                        <button class="btn btn-sm btn-success" type="submit">
                             <i class="bi bi-arrow-counterclockwise"></i> {{ __('support_ticket.reopen') }}</button>
                     </form>
                 @endif
             @endcan
         </div>
         <div class="card-body">
-            <div class="row mb-3">
-                <div class="col-sm-3">
-                    <label for="ticket_name" class="text-muted">{{ __('support_ticket.fields.title') }}:</label>
-                </div>
-                <div class="col-sm-9">
-                    <p id="ticket_name" class="mb-0">{{ $supportTicket->name }}</p>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <label for="ticket_name" class="text-muted">{{ __('support_ticket.fields.title') }}:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <p id="ticket_name" class="mb-0">{{ $supportTicket->name }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <label for="ticket_email" class="text-muted">{{ __('support_ticket.fields.email') }}:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <p id="ticket_email" class="mb-0">{{ $supportTicket->email }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <label for="ticket_message" class="text-muted">{{ __('support_ticket.fields.message') }}:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <p id="ticket_message" class="mb-0">{{ $supportTicket->message }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-3">
-                    <label for="ticket_email" class="text-muted">{{ __('support_ticket.fields.email') }}:</label>
-                </div>
-                <div class="col-sm-9">
-                    <p id="ticket_email" class="mb-0">{{ $supportTicket->email }}</p>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-sm-3">
-                    <label for="ticket_message" class="text-muted">{{ __('support_ticket.fields.message') }}:</label>
-                </div>
-                <div class="col-sm-9">
-                    <p id="ticket_message" class="mb-0">{{ $supportTicket->message }}</p>
-                </div>
-            </div>
 
             @can('support_ticket_edit')
                 @if($supportTicket->status)
@@ -67,7 +84,7 @@
                                        placeholder="{{ __('support_ticket.reply_placeholder') }}"
                                        aria-label="Reply"
                                        aria-describedby="button-addon2">
-                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
+                                <button class="btn btn-primary" type="submit" id="button-addon2"><i
                                         class="bi bi-send"></i></button>
                             </div>
                         </form>
@@ -77,7 +94,7 @@
             @can('support_ticket_show')
                 @if(!empty($supportTicket->replies) && count($supportTicket->replies) > 1)
                     <!-- List of Replies -->
-                    <ul class="list-group">
+                    <ul class="list-group support-threads">
                         @foreach ($supportTicket->replies as $reply)
                             <li class="list-group-item">
                                 <!-- Reply Content -->
