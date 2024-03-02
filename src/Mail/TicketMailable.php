@@ -13,16 +13,16 @@ class TicketMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public string $name;
+    public $subject;
     public string $message;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(string $name, string $message)
+    public function __construct(string $subject, string $message)
     {
         //
-        $this->name = $name;
+        $this->subject = $subject;
         $this->message = $message;
     }
 
@@ -39,7 +39,7 @@ class TicketMailable extends Mailable
      */
     public function content(): Content
     {
-        return new Content(markdown: 'support-ticket::email', with: ['name' => $this->name, 'message' => $this->message],);
+        return new Content(markdown: 'support-ticket::email', with: ['subject' => $this->subject, 'message' => $this->message],);
     }
 
     /**

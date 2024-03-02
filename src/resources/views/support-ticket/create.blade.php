@@ -7,30 +7,16 @@
                     @csrf
                     <!-- CSRF token for form submission -->
                     <div class="mb-3">
-                        <label for="name"
-                               class="form-label">{{ __('support-ticket::support_ticket.fields.title') }}</label>
+                        <label for="subject"
+                               class="form-label">{{ __('support-ticket::support_ticket.fields.subject') }}</label>
                         <!-- Input field for visitor's name -->
                         <input type="text"
-                               class="form-control @if(isset($errors) && $errors->has('name')) is-invalid @endif"
-                               id="name" name="name" value="{{ old('name') }}" required>
+                               class="form-control @if(isset($errors) && $errors->has('subject')) is-invalid @endif"
+                               id="subject" name="subject" value="{{ old('subject') }}" required>
                         <!-- Display validation error message if present -->
-                        @if (isset($errors) && $errors->has('name'))
+                        @if (isset($errors) && $errors->has('subject'))
                             <div class="invalid-feedback">
-                                {{ $errors->get('name')[0] }}
-                            </div>
-                        @endif
-                    </div>
-                    <div class="mb-3">
-                        <label for="email"
-                               class="form-label">{{ trans('support-ticket::support_ticket.fields.email') }}</label>
-                        <!-- Input field for visitor's email -->
-                        <input type="email"
-                               class="form-control @if(isset($errors) && $errors->has('email')) is-invalid @endif"
-                               id="email" name="email" value="{{ old('email') }}" required>
-                        <!-- Display validation error message if present -->
-                        @if (isset($errors) && $errors->has('email'))
-                            <div class="invalid-feedback">
-                                {{ $errors->get('name')[0] }}
+                                {{ $errors->get('subject')[0] }}
                             </div>
                         @endif
                     </div>

@@ -15,8 +15,9 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">{{ __('support_ticket.title_singular') }}</th>
+                        <th scope="col">{{ __('global.id') }}</th>
+                        <th scope="col">{{ __('support_ticket.fields.subject') }}</th>
+                        <th scope="col">{{ __('support_ticket.fields.user_id') }}</th>
                         <th scope="col">{{ __('support_ticket.fields.status') }}</th>
                         <th scope="col" style="width: 250px;">{{ __('global.action') }}</th>
                     </tr>
@@ -25,11 +26,12 @@
                     @forelse ($tickets as $ticket)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $ticket->name }}</td>
+                            <td>{{ $ticket->subject }}</td>
+                            <td>{{ $ticket->user->email }}</td>
                             <td>{!!  $ticket->status == 1 ? '<span class="badge text-success">open</span>' : '<span class="badge text-danger">closed</span>' !!}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('support_ticket.show',$ticket->uuid) }}"
+                                    <a href="{{ route('support_ticket.show', $ticket->uuid) }}"
                                        class="btn btn-primary btn-sm"
                                        title="{{ __('global.show') }}">
                                         <i class="bi bi-eye"></i>

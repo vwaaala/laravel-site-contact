@@ -39,27 +39,25 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-sm-3">
-                            <label for="ticket_name" class="text-muted">{{ __('support_ticket.fields.title') }}:</label>
+                            <label for="ticket_name" class="text-muted">{{ __('support_ticket.fields.subject') }}</label>
                         </div>
                         <div class="col-sm-9">
-                            <p id="ticket_name" class="mb-0">{{ $supportTicket->name }}</p>
+                            <p id="ticket_name" class="mb-0">{{ $supportTicket->subject }}</p>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-sm-3">
-                            <label for="ticket_email" class="text-muted">{{ __('support_ticket.fields.email') }}
-                                :</label>
+                            <label for="ticket_email" class="text-muted">{{ __('support_ticket.fields.user_id') }}</label>
                         </div>
                         <div class="col-sm-9">
-                            <p id="ticket_email" class="mb-0">{{ $supportTicket->email }}</p>
+                            <p id="ticket_email" class="mb-0">{{ $supportTicket->user->email }}</p>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-sm-3">
-                            <label for="ticket_message" class="text-muted">{{ __('support_ticket.fields.message') }}
-                                :</label>
+                            <label for="ticket_message" class="text-muted">{{ __('support_ticket.fields.message') }}</label>
                         </div>
                         <div class="col-sm-9">
                             <p id="ticket_message" class="mb-0">{{ $supportTicket->message }}</p>

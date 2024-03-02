@@ -1,6 +1,6 @@
 <x-mail::message>
 # Introduction
-You have a new contact message from {{ $name }}.
+You have a new contact message from {{ $subject }}.
 
 {{ $message }}
 

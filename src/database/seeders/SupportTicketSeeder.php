@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Bunker\SupportTicket\Models\Reply;
 use Bunker\SupportTicket\Models\Ticket;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -11,6 +12,7 @@ class SupportTicketSeeder extends Seeder
 {
     public function run(): void
     {
+        // table permissions
         $permissions = [
             'support_ticket_create',
             'support_ticket_edit',
@@ -25,6 +27,28 @@ class SupportTicketSeeder extends Seeder
         $super = Role::where(['name' => 'Super Admin'])->first();
         $super->givePermissionTo($permissions);
 
-        Ticket::create(['uuid' => str()->uuid(), 'name' => 'John Doe Ticket', 'email' => 'ticket@gmail.com', 'message' => 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.']);
+        // number of tickets to seed
+        $numberOfTickets = 10;
+
+        // range for user IDs
+        $minUserId = 10;
+        $maxUserId = 100;
+
+        // Loop to create tickets
+        for ($i = 0; $i < $numberOfTickets; $i++) {
+            // Generate a random user ID within the specified range
+            $userId = random_int($minUserId, $maxUserId);
+
+            // Create a support ticket
+            Ticket::create([
+                'subject' => 'Support Ticket ' . ($i + 1),
+                'user_id' => $userId,
+                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                'status' => rand(0, 1), // Random status (true or false)
+                'uuid' => str()->uuid(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }
