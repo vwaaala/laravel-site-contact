@@ -1,22 +1,23 @@
-@extends('layouts.app')
+@extends('layouts.app', ['pageName' => config('pages.support_ticket.index')])
 @section('content')
 
+    @can('role_create')
+        <div class="d-flex mb-2 justify-content-end">
+            <a href="{{ route('support_ticket.create') }}" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> {{ __('global.add') }} {{ __('support_ticket.title_singular') }}
+            </a>
+        </div>
+    @endcan
     @can('support_ticket_show')
-        <!-- User DataTable -->
         <div class="card">
-            <div class="card-header d-flex justify-content-between">
-                <span>{{ __('support_ticket.title') }}</span>
-            </div>
-
             <div class="card-body">
-                <a href="{{ route('support_ticket.create') }}" class="btn btn-primary btn-sm my-2">
-                    <i class="bi bi-plus-circle"></i> {{ __('global.add') }} {{ __('support_ticket.title_singular') }}
-                </a>
+
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">S#</th>
+                        <th scope="col">Id</th>
                         <th scope="col">{{ __('support_ticket.title_singular') }}</th>
+                        <th scope="col">{{ __('support_ticket.fields.status') }}</th>
                         <th scope="col" style="width: 250px;">{{ __('global.action') }}</th>
                     </tr>
                     </thead>
@@ -24,7 +25,8 @@
                     @forelse ($tickets as $ticket)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{$ticket->name }}</td>
+                            <td>{{ $ticket->name }}</td>
+                            <td>{!!  $ticket->status == 1 ? '<span class="badge text-success">open</span>' : '<span class="badge text-danger">closed</span>' !!}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{ route('support_ticket.show',$ticket->uuid) }}"

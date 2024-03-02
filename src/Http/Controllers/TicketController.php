@@ -37,7 +37,7 @@ class TicketController extends Controller
      */
     public function create(): \Illuminate\Contracts\Foundation\Application|Factory|View|Application
     {
-        return view('support-ticket::form');
+        return view('support-ticket::create');
     }
 
     /**

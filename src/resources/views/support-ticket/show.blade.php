@@ -1,40 +1,40 @@
-@extends('layouts.app')
+@extends('layouts.app', ['pageName' => config('pages.support_ticket.show')])
 @push('styles')
-<style>
-    #ticketReplyForm .form-control {
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
-    }
-    ul.support-threads {
-        border-radius: 20px;
-        border: 1px solid #0d6efd2e;
-    }
-</style>
+    <style>
+        #ticketReplyForm .form-control {
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        ul.support-threads {
+            border-radius: 20px;
+            border: 1px solid #0d6efd2e;
+        }
+    </style>
 @endpush
 @section('content')
-    <div class="card">
-        <div class="card-header d-flex justify-content-between">
-            <span>{{ __('support-ticket::support_ticket.title_singular') }}</span>
-            @can('support_ticket_delete')
-                <!-- Conditional link based on whether show_deleted parameter is present in the request -->
-                @if($supportTicket->status)
+    @can('support_ticket_delete')
+        <div class="d-flex mb-2 justify-content-end">
+            <!-- Conditional link based on whether show_deleted parameter is present in the request -->
+            @if($supportTicket->status)
 
-                    <form method="POST" action="{{ route('support_ticket.closeReply', $supportTicket->uuid) }}">
-                        @csrf
-                        <button class="btn btn-sm btn-danger" type="submit">
-                            <i class="bi bi-check2-circle"></i> {{ __('support_ticket.close') }}</button>
-                    </form>
-                @else
-                    <form method="POST" action="{{ route('support_ticket.reOpenReply', $supportTicket->uuid) }}">
-                        @csrf
-                        <button class="btn btn-sm btn-success" type="submit">
-                            <i class="bi bi-arrow-counterclockwise"></i> {{ __('support_ticket.reopen') }}</button>
-                    </form>
-                @endif
-            @endcan
+                <form method="POST" action="{{ route('support_ticket.closeReply', $supportTicket->uuid) }}">
+                    @csrf
+                    <button class="btn btn-danger" type="submit">
+                        <i class="bi bi-check2-circle"></i> {{ __('support_ticket.close') }}</button>
+                </form>
+            @else
+                <form method="POST" action="{{ route('support_ticket.reOpenReply', $supportTicket->uuid) }}">
+                    @csrf
+                    <button class="btn btn-success" type="submit">
+                        <i class="bi bi-arrow-counterclockwise"></i> {{ __('support_ticket.reopen') }}</button>
+                </form>
+            @endif
         </div>
-        <div class="card-body">
+    @endcan
 
+    <div class="card">
+        <div class="card-body">
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="row mb-3">
@@ -48,7 +48,8 @@
 
                     <div class="row mb-3">
                         <div class="col-sm-3">
-                            <label for="ticket_email" class="text-muted">{{ __('support_ticket.fields.email') }}:</label>
+                            <label for="ticket_email" class="text-muted">{{ __('support_ticket.fields.email') }}
+                                :</label>
                         </div>
                         <div class="col-sm-9">
                             <p id="ticket_email" class="mb-0">{{ $supportTicket->email }}</p>
@@ -57,7 +58,8 @@
 
                     <div class="row mb-3">
                         <div class="col-sm-3">
-                            <label for="ticket_message" class="text-muted">{{ __('support_ticket.fields.message') }}:</label>
+                            <label for="ticket_message" class="text-muted">{{ __('support_ticket.fields.message') }}
+                                :</label>
                         </div>
                         <div class="col-sm-9">
                             <p id="ticket_message" class="mb-0">{{ $supportTicket->message }}</p>
