@@ -1,15 +1,18 @@
 @extends('layouts.app', ['pageName' => config('pages.support_ticket.index')])
 @section('content')
 
-    @can('role_create')
-        <div class="d-flex mb-2 justify-content-end">
-            <a href="{{ route('support_ticket.create') }}" class="btn btn-success">
-                <i class="bi bi-plus-circle"></i> {{ __('global.add') }} {{ __('support_ticket.title_singular') }}
-            </a>
-        </div>
-    @endcan
     @can('support_ticket_show')
         <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">{{ __('support_ticket.title_singular') }}</h4>
+                    @can('role_create')
+                        <a href="{{ route('support_ticket.create') }}" class="btn btn-success">
+                            <i class="bi bi-plus-circle"></i> {{ __('global.add') }} {{ __('support_ticket.title_singular') }}
+                        </a>
+                    @endcan
+                </div>
+            </div>
             <div class="card-body">
 
                 <table class="table table-striped table-bordered">
@@ -28,7 +31,7 @@
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $ticket->subject }}</td>
                             <td>{{ $ticket->user->email }}</td>
-                            <td>{!!  $ticket->status == 1 ? '<span class="badge text-success">open</span>' : '<span class="badge text-danger">closed</span>' !!}</td>
+                            <td>{!!  $ticket->status == 1 ? '<i class="bi bi-universal-access-circle text-primary" title="Ticket open"></i>' : '<i class="bi bi-check-circle text-success" title="Ticket solved"></i>' !!}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{ route('support_ticket.show', $ticket->uuid) }}"

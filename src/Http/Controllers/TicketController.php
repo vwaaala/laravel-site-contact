@@ -29,7 +29,11 @@ class TicketController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $tickets = Ticket::paginate(10);
+        if(auth()->user()->hasRole('User')){
+            $tickets = Ticket::where('id', auth()->user()->id)->paginate(10);
+        }else{
+            $tickets = Ticket::paginate(10);
+        }
         return view('support-ticket::index', compact('tickets'));
     }
 
@@ -64,7 +68,11 @@ class TicketController extends Controller
     public function show(string $uuid): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         // Show individual ticket
-        $supportTicket = Ticket::where('uuid', $uuid)->first();
+        if(auth()->user()->hasRole('User')){
+            $supportTicket = Ticket::where('uuid', $uuid)->first();
+        }else{
+            $supportTicket = Ticket::where('uuid', $uuid)->first();
+        }
         return view('support-ticket::show', compact('supportTicket'));
     }
 
