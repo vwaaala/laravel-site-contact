@@ -1,14 +1,17 @@
-@extends('layouts.app', ['pageName' => config('pages.support_ticket.create')])
+@extends('layouts.app')
 @section('content')
     @can('support_ticket_create')
         <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">{{ __('global.create') }} {{ __('support_ticket.title_singular') }}</h5>
+            </div>
             <div class="card-body">
                 <form id="visitorForm" method="POST" action="{{ route('support_ticket.store') }}">
                     @csrf
                     <!-- CSRF token for form submission -->
                     <div class="mb-3">
                         <label for="subject"
-                               class="form-label">{{ __('support-ticket::support_ticket.fields.subject') }}</label>
+                               class="form-label">{{ __('support_ticket.fields.subject') }}</label>
                         <!-- Input field for visitor's name -->
                         <input type="text"
                                class="form-control @if(isset($errors) && $errors->has('subject')) is-invalid @endif"
@@ -22,7 +25,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="message"
-                               class="form-label">{{ trans('support-ticket::support_ticket.fields.message') }}</label>
+                               class="form-label">{{ __('support_ticket.fields.message') }}</label>
                         <!-- Textarea field for visitor's message -->
                         <textarea class="form-control @if(isset($errors) && $errors->has('message')) is-invalid @endif"
                                   id="message"
@@ -36,7 +39,7 @@
                     </div>
                     <!-- Submit button -->
                     <button type="submit"
-                            class="btn btn-primary">{{ trans('support-ticket::support_ticket.form_submit') }}</button>
+                            class="btn btn-primary">{{ __('support_ticket.form_submit') }}</button>
                 </form>
             </div>
         </div>

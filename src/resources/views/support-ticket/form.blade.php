@@ -19,7 +19,7 @@
             </div>
             <div class="mb-3">
                 <label for="message"
-                       class="form-label">{{ trans('support-ticket::support_ticket.fields.message') }}</label>
+                       class="form-label">{{ __('support-ticket::support_ticket.fields.message') }}</label>
                 <!-- Textarea field for visitor's message -->
                 <textarea class="form-control @if(isset($errors) && $errors->has('message')) is-invalid @endif"
                           id="message"
@@ -33,7 +33,7 @@
             </div>
             <!-- Submit button -->
             <button type="submit"
-                    class="btn btn-primary">{{ trans('support-ticket::support_ticket.form_submit') }}</button>
+                    class="btn btn-primary">{{ __('support-ticket::support_ticket.form_submit') }}</button>
         </form>
     </div>
 </div>
